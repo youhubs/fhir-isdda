@@ -60,13 +60,14 @@
 							</UL></LI>
 					</UL>
 					<UL CLASS="nav navbar-nav navbar-right">
-						<LI><A HREF="#"><SPAN CLASS="glyphicon glyphicon-user"></SPAN>&nbsp;Sign Up</A></LI>
+						<!-- <LI><A HREF="#"><SPAN CLASS="glyphicon glyphicon-user"></SPAN>&nbsp;Sign Up</A></LI> -->
 						<LI><A HREF="index.html"><SPAN CLASS="glyphicon glyphicon-log-in"></SPAN>&nbsp;Logout</A></LI>
 					</UL>
 				</DIV>
 			</DIV>
 		</NAV>
-
+		
+		<DIV CLASS="welcome">
 		<DIV CLASS="row">
 			<DIV CLASS="col-sd-1"></DIV>
 			<DIV CLASS="col-sd-11">
@@ -84,8 +85,7 @@
 				<A HREF="referFriend.jsp"><IMG ALT="refer" SRC="images/manu-refer.png"></A>
 				<P>Refer a Patient for Evaluation or Early Intervention</P>
 			</DIV>
-			<DIV CLASS="col-md-1"></DIV>
-			<DIV CLASS="col-md-3">
+			<DIV CLASS="col-md-4">
 				<A HREF="PatientReminder.jsp"><IMG ALT="notify" SRC="images/manu-notify.png"></A>
 				<P>Send Reminder to Patient to Complete Screening</P>
 			</DIV>
@@ -93,7 +93,7 @@
 		</DIV>
 		<DIV CLASS="row">
 			<DIV CLASS="col-md-2"></DIV>
-			<DIV CLASS="col-md-3">
+			<DIV CLASS="col-md-4">
 				<A HREF="asq3.jsp"><IMG ALT="view" SRC="images/manu-asq3.png"></A>
 				<P>View Ages and Stages Scoring or Access Screening Tool</P>
 			</DIV>
@@ -105,6 +105,7 @@
 			<DIV CLASS="col-md-2"></DIV>
 		</DIV>
 		<BR>
+	</DIV>
 	</DIV>
 	<!-- 		<footer id="footer">
 			<p style="text-align: center; padding: 0px">&#169;Copyright -GT-FHIR-ISDDA, 2015.</p>

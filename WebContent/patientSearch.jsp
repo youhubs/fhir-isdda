@@ -18,31 +18,67 @@
 <LINK REL="stylesheet" HREF="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <LINK HREF="css/main.css" TYPE="text/css" REL="stylesheet">
 <LINK HREF="css/search.css" TYPE="text/css" REL="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<SCRIPT TYPE="text/javascript">
+	window.onload = function () { listPatient(); };
+</SCRIPT>
 <SCRIPT TYPE="text/javascript">
 	var request;
-	function searchPatient() {
-		var family = document.querySelector('#family').value;
-		var given = document.querySelector('#given').value;
-		var address = document.querySelector('#address').value;
-		var url = "PatientList.jsp?family=" + family + "&given=" + given + "&address=" + address;
-
-		if (window.XMLHttpRequest) {
-			request = new XMLHttpRequest();
-		} else if (window.ActiveXObject) {
-			request = new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		try {
-			request.onreadystatechange = getInfo;
-			request.open("GET", url, true);
-			request.send();
-
-		} catch (e) {
-			alert("Failed To Connect To Server!");
-		}
-	}
-
+	$(function(){
+		$('#search').on('click', function (e) {
+			e.preventDefault();
+			var family = document.querySelector('#family').value;
+			var given = document.querySelector('#given').value;
+			var birthdate = document.querySelector('#birthdate').value;
+			var url = "PatientList.jsp?family=" + family + "&given=" + given + "&birthdate=" + birthdate;
+			
+			if (window.XMLHttpRequest) {
+				request = new XMLHttpRequest();
+			} else if (window.ActiveXObject) {
+				request = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			try {
+				request.onreadystatechange = getInfo;
+				request.open("GET", url, true);
+				request.send();
+			} catch (e) {
+				alert("Failed To Connect To Server!");
+			}
+			
+			function getInfo() {
+				if (request.readyState == 4) {
+					document.getElementById('right_section').innerHTML = request.responseText;
+				}
+			}		
+		});	    
+	});
+	
+	$(function(){
+		$('#list').on('click', function (e) {
+			e.preventDefault();
+			var url = "PatientList.jsp?family=" + "" + "&given=" + "" + "&birthdate=" + "";
+			if (window.XMLHttpRequest) {
+				request = new XMLHttpRequest();
+			} else if (window.ActiveXObject) {
+				request = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			try {
+				request.onreadystatechange = getInfo;
+				request.open("GET", url, true);
+				request.send();
+			} catch (e) {
+				alert("Failed To Connect To Server!");
+			}		
+			function getInfo() {
+				if (request.readyState == 4) {
+					document.getElementById('right_section').innerHTML = request.responseText;
+				}
+			}		
+		});	    
+	});	
 	function listPatient() {
-		var url = "PatientList.jsp?family=" + "" + "&given=" + "" + "&address=" + "" + "&birthday=" + "";
+		var url = "PatientList.jsp?family=" + "" + "&given=" + "" + "&birthdate=" + "";
 		if (window.XMLHttpRequest) {
 			request = new XMLHttpRequest();
 		} else if (window.ActiveXObject) {
@@ -154,36 +190,42 @@
 							</UL></LI>
 					</UL>
 					<UL CLASS="nav navbar-nav navbar-right">
-						<LI><A HREF="#"><SPAN CLASS="glyphicon glyphicon-user"></SPAN>&nbsp;Sign
-								Up</A></LI>
-						<LI><A HREF="index.html"><SPAN
-								CLASS="glyphicon glyphicon-log-in"></SPAN>&nbsp;Logout</A></LI>
+<!-- 						<LI><A HREF="#"><SPAN CLASS="glyphicon glyphicon-user"></SPAN>&nbsp;Sign
+								Up</A></LI> -->
+						<LI><A HREF="index.html"><SPAN CLASS="glyphicon glyphicon-log-in"></SPAN>&nbsp;Logout</A></LI>
 					</UL>
 				</DIV>
 			</DIV>
-		</NAV>
+		</NAV><BR>
 
 		<!--  Search Form -->
 		<DIV CLASS="row">
 			<DIV CLASS="col-md-4">
-					<FORM ROLE="form" METHOD="post" ACTION="">
-						<DIV CLASS="form-group">
-							<LABEL CLASS="control-label" FOR="given">First Name:</LABEL> <INPUT
-								CLASS="form-control" TYPE="text" NAME="given" ID="given">
-						</DIV>
-						<DIV CLASS="form-group">
-							<LABEL CLASS="control-label" FOR="family">Last Name:</LABEL> <INPUT
-								CLASS="form-control" TYPE="text" NAME="family" ID="family">
-						</DIV>
-						<DIV CLASS="form-group">
-							<LABEL CLASS="control-label" FOR="address">Address:</LABEL> <INPUT
-								CLASS="form-control" TYPE="text" NAME="address" ID="address">
-						</DIV>
-						<BUTTON TYPE="submit" ONCLICK="searchPatient()">Search</BUTTON>&nbsp;&nbsp;
-						<BUTTON TYPE="submit" ONCLICK="listPatient()">List Patient</BUTTON>
-					</FORM>
+				<DIV CLASS="col-md-2"></DIV>
+				<DIV CLASS="col-md-10">
+						<FORM ROLE="form" METHOD="post" ACTION="">
+							<DIV CLASS="form-group">
+								<LABEL CLASS="control-label" FOR="given">First Name:</LABEL> <INPUT
+									CLASS="form-control" TYPE="text" NAME="given" ID="given">
+							</DIV>
+							<DIV CLASS="form-group">
+								<LABEL CLASS="control-label" FOR="family">Last Name:</LABEL> <INPUT
+									CLASS="form-control" TYPE="text" NAME="family" ID="family">
+							</DIV>
+							<DIV CLASS="form-group">
+								<LABEL CLASS="control-label" FOR="birthdate">Birthdate:</LABEL> <INPUT
+									CLASS="form-control" TYPE="text" NAME="birthdate" ID="birthdate" PLACEHOLDER="yyyy-mm-dd">
+							</DIV>
+<!-- 							<DIV CLASS="form-group">
+								<LABEL CLASS="control-label" FOR="address">Address:</LABEL> <INPUT
+									CLASS="form-control" TYPE="text" NAME="address" ID="address">
+							</DIV> -->
+							<BUTTON TYPE="submit" ID="search" >Search</BUTTON>&nbsp;&nbsp;
+							<BUTTON TYPE="submit" ID="list">List Patient</BUTTON>
+						</FORM>
+				</DIV>
 			</DIV>
-			<DIV CLASS="col-md-8" ID="right_section"></DIV>				
+			<DIV CLASS="col-md-7" ID="right_section"></DIV>
 		</DIV>
 
 		<!-- 		<footer id="footer">
@@ -191,7 +233,6 @@
 		</footer> -->
 	</DIV>
 </BODY>
-
 <%
 	} else {
 %>
@@ -199,20 +240,4 @@
 <%
 	}
 %>
-
-<SCRIPT TYPE="text/javascript">
-if (navigator.userAgent.toLowerCase().indexOf("chrome") >= 0) {
-	$(window).load(function(){
-	    $('input:-webkit-autofill').each(function(){
-	        var text = $(this).val();
-	        var name = $(this).attr('name');
-	        $(this).after(this.outerHTML).remove();
-	        $('input[name=' + name + ']').val(text);
-	    });
-	});}
-	
-	window.onload = function () { 
-		listPatient(); 
-	};
-</SCRIPT>
 </HTML>

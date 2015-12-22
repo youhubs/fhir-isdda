@@ -62,10 +62,8 @@
 							</UL></LI>
 					</UL>
 					<UL CLASS="nav navbar-nav navbar-right">
-						<LI><A HREF="#"><SPAN CLASS="glyphicon glyphicon-user"></SPAN>&nbsp;Sign
-								Up</A></LI>
-						<LI><A HREF="index.html"><SPAN
-								CLASS="glyphicon glyphicon-log-in"></SPAN>&nbsp;Logout</A></LI>
+						<!-- <LI><A HREF="#"><SPAN CLASS="glyphicon glyphicon-user"></SPAN>&nbsp;Sign Up</A></LI> -->
+						<LI><A HREF="index.html"><SPAN CLASS="glyphicon glyphicon-log-in"></SPAN>&nbsp;Logout</A></LI>
 					</UL>
 				</DIV>
 			</DIV>

@@ -16,7 +16,9 @@
 	text-align: left;
 	font-size: 18px;
 }
-
+#right_section {
+	margin-left:3%;
+}
 /* Patient List */
 .thead {
 	background: #8aa89a;

@@ -11,17 +11,22 @@
 	request.setCharacterEncoding("GB18030");
 	String given = request.getParameter("given").trim();
 	String family = request.getParameter("family").trim();
-	String address = request.getParameter("address").trim();
+	String birthdate = request.getParameter("birthdate").trim();
 	
-	System.out.println("---REQUEST---##" + given + "-##-" + family	+ "####-" + address);
+	System.out.println("---REQUEST---##" + given + "-##-" + family	+ "####-" + birthdate);
 	
 	// Search patients
 	int TotalRecords = 0;
 	PatientResourceProvider pProvider = new PatientResourceProvider();
-	List<Patient> patients = pProvider.getPatients(given, family, address);
+	List<Patient> patients;
+	if (!"".equals(birthdate)) {
+		patients = pProvider.getPatientByBirthdate(birthdate);
+	} else {
+		patients = pProvider.getPatientByName(given, family);
+	}
 	TotalRecords = patients.size();
-
-	System.out.println("---REQUEST---##" + given + "-##-" + family	+ "####-" + address);
+	
+	System.out.println("---REQUEST---##" + given + "-##-" + family	+ "####-" + birthdate);
 	System.out.println("----TotalRecords----" + TotalRecords);
 %>
 
