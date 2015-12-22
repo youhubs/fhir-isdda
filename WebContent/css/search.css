@@ -1,0 +1,33 @@
+/* Patient information */
+.patientInfo {
+	font-size: 16px;
+}
+
+.addr_label {
+	width: 30%;
+	float: left;
+	text-align: right;
+	padding-right: 5%;
+}
+
+.addr_value {
+	width: 60%;
+	float: left;
+	text-align: left;
+	font-size: 18px;
+}
+
+/* Patient List */
+.thead {
+	background: #8aa89a;
+	text-align: center;
+}
+
+.table tbody {
+	background: #c0c0a5;
+	text-align: center;
+}
+
+.table tr:hover {
+	background-color: lightgreen;
+}
